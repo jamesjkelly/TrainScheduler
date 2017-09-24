@@ -1,49 +1,80 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>fire base train scheduler</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/style/style.css">
- 
- 
-  </head>
-  <body >
- 
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container" >
-        <h1   >fire base train scheduler</h1>
-        <div id='button'>
-        <button type="button" class="btn btn-primary">catch train</button>
-        </div>
+   <head>
+      <title>fire base train scheduler</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- jQuery first, then Tether, then Bootstrap JS. -->
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="./assets/javascript/app.js"></script>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+      <link rel="stylesheet" href="./assets/style/style.css">
+      <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+      <script>
+         // Initialize Firebase
+         var config = {
+         apiKey: "AIzaSyBS_cYI-HEltu964nsHkuTc_MIQ5mQlzn4",
+         authDomain: "trainscheduler-ee818.firebaseapp.com",
+         databaseURL: "https://trainscheduler-ee818.firebaseio.com",
+         projectId: "trainscheduler-ee818",
+         storageBucket: "gs://trainscheduler-ee818.appspot.com",
+         messagingSenderId: "625432489967"
+         };
+         firebase.initializeApp(config);
+      </script>  
+   </head>
+   <body >
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+         <div class="container" >
+            <h1   >fire base train scheduler</h1>
+         </div>
       </div>
-    </div>
-
-    <div class="container" id='main' style="display:none">
-    <div class="row">
-
-<div class="col-md-12 game"   >
-  fire base train scheduler app to come
-
-  </div>
-
-<div id="footer">
-  <div class="container text-center">
-    <p > &copy; James J Kelly 2017</p>
-  </div>
-</div>
-    <!-- /container -->
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-       <script type="text/javascript" src="./assets/javascript/app.js"></script>
-  </body>
+      <div class="container" >
+         <div class="row">
+            <div class="col-md-12 train" style='border: 1px solid black; border-radius: 13px; padding:10px' >
+               <h1>Current Train Schedule</h1>
+               <table style="width:100%">
+                  <tr>
+                     <td style='width:20%'>Train Name</td>
+                     <td style='width:20%'>    Destination</td>
+                     <td style='width:20%'>    Frequency(min)</td>
+                     <td style='width:20%'>   Next Arival    </td>
+                     <td style='width:20%'>Minutes Away</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <br />
+         <div class="row">
+            <div class="col-md-12 train" style='border: 1px solid black; border-radius: 13px; padding:10px' >
+               <h2>Add Train</h2>
+               <form id="trainForm">
+                  <label>Train Name</label> <br />
+                  <input type='text' placeholder="Train Name" id='trainName'><br /><br />
+                  <label>Destination</label> <br />
+                  <input type='text' placeholder="Destination" id='destination'><br /><br />
+                  <label>First Train Time (HH:mm - military time) 
+                  00:00</label><br />
+                  <input type='text' placeholder="00:00" id='firstTrainTime'>
+                  <br /><br />
+                  <label>Frequency(min)</label><br />
+                  <input type='text' placeholder="frequency" id='frequency'>
+                  <br /><br />
+                  <button id='button' type="button" class="btn btn-primary">submit</button>
+               </form>
+            </div>
+         </div>
+      </div>
+      <div id="footer">
+         <div class="container text-center">
+            <p > &copy; James J Kelly 2017</p>
+         </div>
+      </div>
+      <!-- /container -->
+   </body>
 </html>
