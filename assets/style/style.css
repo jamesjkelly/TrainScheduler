@@ -1,57 +1,7 @@
- @import url(http://fonts.googleapis.com/css?family=Slackey);
+ @import url(http://fonts.googleapis.com/css?family=Roboto);
  
  
 body {
-background-color:#cef;
-text-align: center;
-margin: auto;
-
-}
-#done {
-	font-size: 2em;
-	font-weight: 600;
-}
-.game {
-
-	font-size:36px;
-	color: #26558b;
+ font-family: Roboto;
 }
 
-h1 {
-font-family: 'Slackey', cursive;
-margin-top: 15px;
-font-size: 5em;
-letter-spacing: .15em;
-color: #26558b;
-font-weight: 500;
-
-}
-.jumbotron {
-
-background: #cedbe9; /* Old browsers */
-background: -moz-linear-gradient(top, #cedbe9 0%, #aac5de 17%, #6199c7 50%, #3a84c3 51%, #419ad6 59%, #4bb8f0 71%, #3a8bc2 84%, #26558b 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #cedbe9 0%,#aac5de 17%,#6199c7 50%,#3a84c3 51%,#419ad6 59%,#4bb8f0 71%,#3a8bc2 84%,#26558b 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #cedbe9 0%,#aac5de 17%,#6199c7 50%,#3a84c3 51%,#419ad6 59%,#4bb8f0 71%,#3a8bc2 84%,#26558b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-}
-footer p {
-  text-align: center;
-
-}
-.score  {
-	font-size: 20px;
-	font-weight: bold;
-}
-#yourTotal {
-	text-align: right;
-}
-.digits {
-	background-color: tan;
-	padding:20px;
- 
-}
-
-#main
-{
-	font-size: 	2em;
-	font-weight: 300
-}
