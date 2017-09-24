@@ -1,76 +1,63 @@
-# javaScript Assignment 2
+# Firebase Assignment - Train Scheduler (Basic - Recommended)
 
-Overview
+##### _Because that Rock Paper Scissors Game is Too Damn Hard_
 
-In this assignment, You'll create a Trivia game using JavaScript for the logic and jQuery to manipulate HTML. Be sure to layout this app with valid HTML and stylish CSS.
+### Overview
 
-Before You Begin
+In this assignment, you'll create a train schedule application that incorporates Firebase to host arrival and departure data. Your app will retrieve and manipulate this information with Moment.js. This website will provide up-to-date information about various trains, namely their arrival times and how many minutes remain until they arrive at their station.
 
-Create a GitHub repo called TriviaGame, then clone the repo to your computer.
+- - -
 
-Create a file inside of the TriviaGame folder called index.html. This is where you'll mark up all of your HTML.
+### Setup
 
-Don't forget to include a script tag with the jQuery library.
+* We'll leave that up to you -- however you like. Just make sure you're using Firebase to store data, GitHub to backup your project, and GithHub Pages to host your finished site.
 
-Create a folder inside of the TriviaGame folder called assets.
+### Instructions
 
-Inside assets, create three folders: css, javascript, images
+* Make sure that your app suits this basic spec:
+  
+  * When adding trains, administrators should be able to submit the following:
+    
+    * Train Name
+    
+    * Destination 
+    
+    * First Train Time -- in military time
+    
+    * Frequency -- in minutes
+  
+  * Code this app to calculate when the next train will arrive; this should be relative to the current time.
+  
+  * Users from many different machines must be able to view same train times.
+  
+  * Styling and theme are completely up to you. Get Creative!
 
-In your css folder, create a style.css file.
-In your javascript folder, create an app.js file; here you'll write all of your JavaScript and jQuery.
-In your images folder, save whatever images you'd like to use in this exercise.
-Choose a game to build from your options below.
+### Example Site
 
-Option One: Basic Quiz (Timed Form)
+![train homework](Train_Time_Image.png)
 
-Basic
+### Bonus (Extra Challenges)
 
-Click Here to Watch the Demo.
+* Consider updating your "minutes to arrival" and "next train time" text once every minute. This is significantly more challenging; only attempt this if you've completed the actual activity and committed it somewhere on GitHub for safekeeping (and maybe create a second GitHub repo).
 
-You'll create a trivia form with multiple choice or true/false options (your choice).
+* Try adding `update` and `remove` buttons for each train. Let the user edit the row's elements-- allow them to change a train's Name, Destination and Arrival Time (and then, by relation, minutes to arrival).
 
-The player will have a limited amount of time to finish the quiz.
+* As a final challenge, make it so that only users who log into the site with their Google or GitHub accounts can use your site. You'll need to read up on Firebase authentication for this bonus exercise.
 
-The game ends when the time runs out. The page will reveal the number of questions that players answer correctly and incorrectly.
-Don't let the player pick more than one answer per question.
+- - -
 
-Don't forget to include a countdown timer.
-
-Option Two: Advanced Assignment (Timed Questions)
-
-Advanced
-
-Click Here to Watch the demo.
-
-You'll create a trivia game that shows only one question until the player answers it or their time runs out.
-
-If the player selects the correct answer, show a screen congratulating them for choosing the right option. After a few seconds, display the next question -- do this without user input.
-
-The scenario is similar for wrong answers and time-outs.
-
-If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
-If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
-On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
-
-Minimum Requirements
+### Minimum Requirements
 
 Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed.
 
-A Few Last Notes
+- - -
 
-Styling and theme are completely up to you. Get creative!
+### One More Thing
 
-Remember to deploy your assignment to Github Pages.
+If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
 
-*If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
+**Good Luck!**
 
-Good Luck!
-
-Copyright
+## Copyright
 
 Coding Boot Camp (C) 2016. All Rights Reserved.
-© 2017 GitHub, Inc.
-Terms
-Privacy
-Security
-S
