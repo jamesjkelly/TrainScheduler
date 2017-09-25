@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
    <head>
       <title>fire base train scheduler</title>
@@ -26,6 +26,8 @@
          };
          firebase.initializeApp(config);
       </script>  
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+ 
    </head>
    <body >
       <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -38,7 +40,7 @@
          <div class="row">
             <div class="col-md-12 train" style='border: 1px solid black; border-radius: 13px; padding:10px' >
                <h1>Current Train Schedule</h1>
-               <table style="width:100%">
+               <table style="width:100%" id='trainTable'>
                   <tr>
                      <td style='width:20%'>Train Name</td>
                      <td style='width:20%'>    Destination</td>
@@ -53,20 +55,20 @@
          <div class="row">
             <div class="col-md-12 train" style='border: 1px solid black; border-radius: 13px; padding:10px' >
                <h2>Add Train</h2>
-               <form id="trainForm">
+               <form id=#trainForm">
                   <label>Train Name</label> <br />
                   <input type='text' placeholder="Train Name" id='trainName'><br /><br />
                   <label>Destination</label> <br />
                   <input type='text' placeholder="Destination" id='destination'><br /><br />
                   <label>First Train Time (HH:mm - military time) 
                   00:00</label><br />
-                  <input type='text' placeholder="00:00" id='firstTrainTime'>
+                  <input type='text' placeholder="00:00" id='trainTime'>
                   <br /><br />
                   <label>Frequency(min)</label><br />
                   <input type='text' placeholder="frequency" id='frequency'>
                   <br /><br />
-                  <button id='button' type="button" class="btn btn-primary">submit</button>
-               </form>
+                  <input id='getTrain' type="submit" value-"Submit" class="btn btn-primary"/>
+              </</form>
             </div>
          </div>
       </div>
