@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
    <head>
       <title>fire base train scheduler</title>
@@ -9,23 +9,13 @@
       <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="./assets/javascript/app.js"></script>
+      
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
       <link rel="stylesheet" href="./assets/style/style.css">
       <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-      <script>
-         // Initialize Firebase
-         var config = {
-         apiKey: "AIzaSyBS_cYI-HEltu964nsHkuTc_MIQ5mQlzn4",
-         authDomain: "trainscheduler-ee818.firebaseapp.com",
-         databaseURL: "https://trainscheduler-ee818.firebaseio.com",
-         projectId: "trainscheduler-ee818",
-         storageBucket: "gs://trainscheduler-ee818.appspot.com",
-         messagingSenderId: "625432489967"
-         };
-         firebase.initializeApp(config);
-      </script>  
+     
+ 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
  
    </head>
@@ -78,5 +68,75 @@
          </div>
       </div>
       <!-- /container -->
+
+<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAHSFxOzo6ox37WJsDmNcX2BAbP322BvFo",
+    authDomain: "jkmacman-092517-test.firebaseapp.com",
+    databaseURL: "https://jkmacman-092517-test.firebaseio.com",
+    projectId: "jkmacman-092517-test",
+    storageBucket: "jkmacman-092517-test.appspot.com",
+    messagingSenderId: "1097444539645"
+  };
+  
+
+    firebase.initializeApp(config);
+
+    // Create a variable to reference the database
+    var database = firebase.database();
+
+    // Initial Values
+    var name = "";
+    var email = "";
+    var age = 0;
+    var comment = "";
+
+    // Capture Button Click
+    $("#getTrain").on("click", function() {
+      // Don't refresh the page!
+      event.preventDefault();
+
+      // YOUR TASK!!!
+      // Code in the logic for storing and retrieving the most recent user.
+      // Don't forget to provide initial data to your Firebase database.
+      name = $("#trainName").val().trim();
+      email = $("#destination").val().trim();
+      age = $("#trainTime").val().trim();
+      comment = $("#frequency").val().trim();
+
+      database.ref().set({
+        trainName: name,
+        destination: email,
+        trainTime: age,
+        frequency: comment
+      });
+
+    });
+
+    // Firebase watcher + initial loader HINT: .on("value")
+    database.ref().on("value", function(snapshot) {
+
+      // Log everything that's coming out of snapshot
+      console.log(snapshot.val());
+      console.log(snapshot.val().name);
+      console.log(snapshot.val().email);
+      console.log(snapshot.val().age);
+      console.log(snapshot.val().comment);
+
+      // Change the HTML to reflect
+
+ $("#trainTable").append('<tr><td>' + snapshot.val().name + '</td><td>' + snapshot.val().email + '</td><td>' + snapshot.val().age + '</td><td>' + snapshot.val().comment + '</td><td>' + snapshot.val().comment + '</td></tr>');
+     
+
+ 
+
+      // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
+  </script>
+
    </body>
 </html>
