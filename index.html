@@ -36,17 +36,10 @@
     messagingSenderId: "1097444539645"
   };
   firebase.initializeApp(config);
-  
-</script>
-
-  <!-- MomentJS Library CDN -->
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-  
-  <!-- Internal Styling -->
-
-  <link rel="stylesheet" href="assets/css/style.css"/>
-
+ 
   <title>Train Scheduler</title>
 
 </head>
@@ -57,11 +50,9 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            Current Train Schedule
-          </div>
+      <div class="col-sm-12" style='border:1px solid black;border-radius: 13px;' >
+ <H2>            Current Train Schedule
+          </H2>  
           <table class="table">
             <tbody id="train-table">
               <thead>
@@ -69,24 +60,18 @@
               </thead>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+         </div>
     <div class="row">
-      <div class="col-sm-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            Add Train
-          </div>
-          <div class="panel-body">
-            <form id="train-form">
+      <div class="col-sm-12" style='border:1px solid black;border-radius: 13px;margin-top: 22px'>
+            <h2> Add Train </h2>
+             <form id="train-form">
               <div class="form-group">
                 <label>Train Name</label>
-                <input id="train-name" class="form-control" type="text" placeholder="Midnight Express" />
+                <input id="train-name" class="form-control" type="text" placeholder="Orange Blossum Special" />
               </div>
               <div class="form-group">
                 <label>Destination</label>
-                <input id="destination" class="form-control" type="text" placeholder="New York"/>
+                <input id="destination" class="form-control" type="text" placeholder="Jacksonville"/>
               </div>
               <div class="form-group">
                 <label>First Train Time (HH:mm - military time)</label>
@@ -97,14 +82,11 @@
                 <input id="frequency" class="form-control" type="text" placeholder="15"/>
               </div>
               <div class="form-group">
-                <input type="submit" value-"Submit" class="btn btn-primary"/>
+                <input type="submit" value-"Submit" class="btn btn-secondary"/>
               </div>
             </form>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        
 
   <!-- Internal Scripting -->
 
