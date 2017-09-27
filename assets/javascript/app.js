@@ -21,9 +21,9 @@ $(document).ready(function() {
   database.ref().on("child_added", function(snapshot) {
     var current = snapshot.val();
     var now = moment();
-  
-    var minAway = nextTrain.diff(now, "minutes");
-
+    var tStart = moment(current.time, "HH:mm");
+     
+     
     var timediff = moment().diff(moment(current.time, "HH:mm"), "minutes");
     $table.append(`<tr><td>${
       current.name
@@ -31,10 +31,6 @@ $(document).ready(function() {
       current.dest
     }</td><td>${
       current.freq
-    }</td><td>${
-    
-    }</td><td>${
-      minAway
-    }</td></tr>`);
+    }</td><td>Next Train</td><td> Minutes Away</td></tr>`);
   });
 });
