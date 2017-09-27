@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
    <head>
       <title>fire base train scheduler</title>
@@ -9,8 +9,7 @@
       <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="./assets/javascript/app.js"></script>
-      <!-- Bootstrap CSS -->
+       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
        <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
      
@@ -73,6 +72,7 @@
  
 <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 <script>
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAHSFxOzo6ox37WJsDmNcX2BAbP322BvFo",
@@ -90,11 +90,15 @@
     var database = firebase.database();
   
     // Initial Values
-    var name = "";
+    var trainName = "";
     var email = "";
     var age = "";
     var comment = "";
-   
+    var frequency = ''
+    var now = moment();
+    
+     var nextArrival = "";
+     var minutesAway = "";
 
     // Capture Button Click
     $("#getTrain").one("click", function() {
@@ -104,35 +108,37 @@
       // YOUR TASK!!!
       // Code in the logic for storing and retrieving the most recent user.
       // Don't forget to provide initial data to your Firebase database.
-      name = $("#trainName").val().trim();
-      email = $("#destination").val().trim();
-      age = $("#trainTime").val().trim();
-      comment = $("#frequency").val().trim();
-      var today = new Date();
-
-
+      trainName = $("#trainName").val().trim();
+      destination = $("#destination").val().trim();
+      trainTime = $("#trainTime").val().trim();
+      frequency = $("#frequency").val().trim();
+      minutesAway=moment().add(frequency, 'minutes').format("dddd, MMMM Do YYYY, h:mm:ss p");
+     
       database.ref().set({
-        trainName: name,
-        destination: email,
-        trainTime: age,
-        frequency: comment
+        trainName: trainName,
+        destination: destination,
+        trainTime: trainTime,
+        frequency: frequency,
+        frequency: frequency,
+        minutesAway: minutesAway
       });
 
     });
+ 
 
     // Firebase watcher + initial loader HINT: .on("value")
     database.ref().on("value", function(snapshot) {
 
       // Log everything that's coming out of snapshot
       console.log(snapshot.val());
-      console.log(snapshot.val().name);
-      console.log(snapshot.val().email);
-      console.log(snapshot.val().age);
-      console.log(snapshot.val().comment);
+      console.log(snapshot.val().trainName);
+      console.log(snapshot.val().destination);
+      console.log(snapshot.val().trainTime);
+      console.log(snapshot.val().frequency);
 
       // Change the HTML to reflect
 
- $("#trainTable").append('<tr><td>' + snapshot.val().name + '</td><td>' + snapshot.val().email + '</td><td>' + snapshot.val().age + '</td><td>' + snapshot.val().comment + '</td><td>' + today + '</td></tr>');
+ $("#trainTable").append('<tr><td>' + snapshot.val().trainName + '</td><td>' + snapshot.val().destination + '</td><td>' + frequency + '</td><td>' +  minutesAway + '</td><td>' +  frequency + '</td></tr>');
      
 
  
