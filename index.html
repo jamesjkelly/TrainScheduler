@@ -1,76 +1,30 @@
-  <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <title>fire base train scheduler</title>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- jQuery first, then Tether, then Bootstrap JS. -->
-      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-       <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-       <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-     
  
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
- 
-   </head>
-   <body >
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-         <div class="container" >
-            <h1   >fire base train scheduler</h1>
-         </div>
-      </div>
-      <div class="container" >
-         <div class="row">
-            <div class="col-md-12 train" style='border: 1px solid black; border-radius: 13px; padding:10px' >
-               <h1>Current Train Schedule</h1>
-               <table style="width:100%" id='trainTable'>
-                  <tr>
-                     <td style='width:20%'>Train Name</td>
-                     <td style='width:20%'>    Destination</td>
-                     <td style='width:20%'>    Frequency(min)</td>
-                     <td style='width:20%'>   Next Arival    </td>
-                     <td style='width:20%'>Minutes Away</td>
-                  </tr>
-               </table>
-            </div>
-         </div>
-         <br />
-         <div class="row">
-            <div class="col-md-12 train" style='border: 1px solid black; border-radius: 13px; padding:10px' >
-               <h2>Add Train</h2>
-               <form id=#trainForm">
-                  <label>Train Name</label> <br />
-                  <input type='text' placeholder="Train Name" id='trainName'><br /><br />
-                  <label>Destination</label> <br />
-                  <input type='text' placeholder="Destination" id='destination'><br /><br />
-                  <label>First Train Time (HH:mm - military time) 
-                  00:00</label><br />
-                  <input type='text' placeholder="00:00" id='trainTime'>
-                  <br /><br />
-                  <label>Frequency(min)</label><br />
-                  <input type='text' placeholder="frequency" id='frequency'>
-                  <br /><br />
-                  <input id='getTrain' type="submit" value-"Submit" class="btn btn-primary"/>
-              </</form>
-            </div>
-         </div>
-      </div>
-      <div id="footer">
-         <div class="container text-center">
-            <p > &copy; James J Kelly 2017</p>
-         </div>
-      </div>
-      <!-- /container -->
+<!DOCTYPE html>
 
- 
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
- 
-<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="assets/css/reset.css"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Firebase Scripting -->
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
 <script>
 
   // Initialize Firebase
@@ -82,72 +36,81 @@
     storageBucket: "jkmacman-092517-test.appspot.com",
     messagingSenderId: "1097444539645"
   };
+  firebase.initializeApp(config);
   
+</script>
 
-    firebase.initializeApp(config);
+  <!-- MomentJS Library CDN -->
 
-    // Create a variable to reference the database
-    var database = firebase.database();
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   
-    // Initial Values
-    var trainName = "";
-    var email = "";
-    var age = "";
-    var comment = "";
-    var frequency = ''
-    var now = moment();
-    
-     var nextArrival = "";
-     var minutesAway = "";
+  <!-- Internal Styling -->
 
-    // Capture Button Click
-    $("#getTrain").one("click", function() {
-      // Don't refresh the page!
-      event.preventDefault();
+  <link rel="stylesheet" href="assets/css/style.css"/>
 
-      // YOUR TASK!!!
-      // Code in the logic for storing and retrieving the most recent user.
-      // Don't forget to provide initial data to your Firebase database.
-      trainName = $("#trainName").val().trim();
-      destination = $("#destination").val().trim();
-      trainTime = $("#trainTime").val().trim();
-      frequency = $("#frequency").val().trim();
-      minutesAway=moment().add(frequency, 'minutes').format("dddd, MMMM Do YYYY, h:mm:ss p");
-     
-      database.ref().set({
-        trainName: trainName,
-        destination: destination,
-        trainTime: trainTime,
-        frequency: frequency,
-        frequency: frequency,
-        minutesAway: minutesAway
-      });
+  <title>Train Scheduler</title>
 
-    });
- 
+</head>
 
-    // Firebase watcher + initial loader HINT: .on("value")
-    database.ref().on("value", function(snapshot) {
+<body>
+  <div class="page-header">
+    <h1 class="text-center">Train Scheduler</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Current Train Schedule
+          </div>
+          <table class="table">
+            <tbody id="train-table">
+              <thead>
+                <tr><td><strong>Train Name</strong></td><td><strong>Destination</strong></td><td><strong>Frequency (min)</strong></td><td><strong>Next Arrival</strong></td><td><strong>Minutes Away</strong></td></tr>
+              </thead>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Add Train
+          </div>
+          <div class="panel-body">
+            <form id="train-form">
+              <div class="form-group">
+                <label>Train Name</label>
+                <input id="train-name" class="form-control" type="text" placeholder="Midnight Express" />
+              </div>
+              <div class="form-group">
+                <label>Destination</label>
+                <input id="destination" class="form-control" type="text" placeholder="New York"/>
+              </div>
+              <div class="form-group">
+                <label>First Train Time (HH:mm - military time)</label>
+                <input id="train-time" class="form-control" type="text" placeholder="00:00"/>
+              </div>
+              <div class="form-group">
+                <label>Frequency(min)</label>
+                <input id="frequency" class="form-control" type="text" placeholder="15"/>
+              </div>
+              <div class="form-group">
+                <input type="submit" value-"Submit" class="btn btn-primary"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      // Log everything that's coming out of snapshot
-      console.log(snapshot.val());
-      console.log(snapshot.val().trainName);
-      console.log(snapshot.val().destination);
-      console.log(snapshot.val().trainTime);
-      console.log(snapshot.val().frequency);
+  <!-- Internal Scripting -->
 
-      // Change the HTML to reflect
+  <script src="assets/js/script.js"></script>
 
- $("#trainTable").append('<tr><td>' + snapshot.val().trainName + '</td><td>' + snapshot.val().destination + '</td><td>' + frequency + '</td><td>' +  minutesAway  + '</td><td>' +  trainTime + '</td></tr>');
-     trainTime
+</body>
 
- 
-
-      // Handle the errors
-    }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
-    });
-  </script>
-
-   </body>
 </html>
