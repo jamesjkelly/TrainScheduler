@@ -1,10 +1,10 @@
  
 $(document).ready(function() {
-  var $table = $("#train-table");
-  var $form = $("#train-form");
-  var $name = $("#train-name");
+  var $table = $("#trainTable");
+  var $form = $("#trainForm");
+  var $name = $("#trainName");
   var $dest = $("#destination");
-  var $time = $("#train-time");
+  var $time = $("#trainTime");
   var $freq = $("#frequency");
   var database = firebase.database();
 
@@ -17,16 +17,13 @@ $(document).ready(function() {
       freq: $freq.val()
     })
   });
+
 database.ref().on("child_added", function(snapshot) {
     var current = snapshot.val();
     var now = moment();
     var tStart = moment(current.time, "HH:mm");
-    // NA = ((CT-ST)/FR + 1) * FR + ST
-    // MA = NA - CT
     var nextTrain = moment(tStart.add((Math.ceil((now.diff(tStart, "minutes")/current.freq)) * current.freq), "minutes"));
-
     var minAway = nextTrain.diff(now, "minutes");
-
     var timediff = moment().diff(moment(current.time, "HH:mm"), "minutes");
     $table.append(`<tr><td>${
       current.name
@@ -39,5 +36,7 @@ database.ref().on("child_added", function(snapshot) {
     }</td><td>${
       minAway
     }</td></tr>`);
+
+  
   });
-});
+   })

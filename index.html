@@ -1,97 +1,80 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
+<link href="https://fonts.googleapis.com/css?family=Slackey" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/reset.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-  <!-- Latest compiled and minified CSS -->
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-  <!-- Firebase Scripting -->
-
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-
-<script>
-
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAHSFxOzo6ox37WJsDmNcX2BAbP322BvFo",
-    authDomain: "jkmacman-092517-test.firebaseapp.com",
-    databaseURL: "https://jkmacman-092517-test.firebaseio.com",
-    projectId: "jkmacman-092517-test",
-    storageBucket: "jkmacman-092517-test.appspot.com",
-    messagingSenderId: "1097444539645"
-  };
-  firebase.initializeApp(config);
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
- 
-  <title>Train Scheduler</title>
-
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAHSFxOzo6ox37WJsDmNcX2BAbP322BvFo",
+            authDomain: "jkmacman-092517-test.firebaseapp.com",
+            databaseURL: "https://jkmacman-092517-test.firebaseio.com",
+            projectId: "jkmacman-092517-test",
+            storageBucket: "jkmacman-092517-test.appspot.com",
+            messagingSenderId: "1097444539645"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <title>Train Scheduler</title>
 </head>
 
-<body>
-  <div class="page-header">
-    <h1 class="text-center">Train Scheduler</h1>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12" style='border:1px solid black;border-radius: 13px;' >
- <H2>            Current Train Schedule
-          </H2>  
-          <table class="table">
-            <tbody id="train-table">
-              <thead>
-                <tr><td><strong>Train Name</strong></td><td><strong>Destination</strong></td><td><strong>Frequency (min)</strong></td><td><strong>Next Arrival</strong></td><td><strong>Minutes Away</strong></td></tr>
-              </thead>
-            </tbody>
-          </table>
-         </div>
-    <div class="row">
-      <div class="col-sm-12" style='border:1px solid black;border-radius: 13px;margin-top: 22px'>
-            <h2> Add Train </h2>
-             <form id="train-form">
-              <div class="form-group">
-                <label>Train Name</label>
-                <input id="train-name" class="form-control" type="text" placeholder="Orange Blossum Special" />
-              </div>
-              <div class="form-group">
-                <label>Destination</label>
-                <input id="destination" class="form-control" type="text" placeholder="Jacksonville"/>
-              </div>
-              <div class="form-group">
-                <label>First Train Time (HH:mm - military time)</label>
-                <input id="train-time" class="form-control" type="text" placeholder="00:00"/>
-              </div>
-              <div class="form-group">
-                <label>Frequency(min)</label>
-                <input id="frequency" class="form-control" type="text" placeholder="15"/>
-              </div>
-              <div class="form-group">
-                <input type="submit" value-"Submit" class="btn btn-secondary"/>
-              </div>
-            </form>
-          </div>
-        
+<body style="font-family: Roboto,sans-serif">
+    <div class="jumbotron">
+        <h1 class="text-center">Train Scheduler</h1>
+    </div>
+    <div class="container">
+        <div class="row" style='border:1px solid black;border-radius: 13px;'>
+            <div class="col-sm-12" >
+                <H2> Current Train Schedule
+                </H2>
+                <table class="table">
+                    <tbody id="trainTable">
 
-  <!-- Internal Scripting -->
+                        <tr>
+                            <td><strong>Train Name</strong></td>
+                            <td><strong>Destination</strong></td>
+                            <td><strong>Frequency (min)</strong></td>
+                            <td><strong>Next Arrival</strong></td>
+                            <td><strong>Minutes Away</strong></td>
+                        </tr>
 
-  <script src="assets/js/app.js"></script>
-
+                    </tbody>
+                </table>
+            </div></div>
+            <div class="row" style='border:1px solid black;border-radius: 13px;margin-top: 22px;width:100%'>
+                <div class="col-sm-12" >
+                    <h2> Add Train </h2>
+                    <form id="trainForm">
+                        <div class="form-group">
+                            <label>Train Name</label>
+                            <input id="trainName" class="form-control" type="text" placeholder="Orange Blossum Special" />
+                        </div>
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <input id="destination" class="form-control" type="text" placeholder="Jacksonville" />
+                        </div>
+                        <div class="form-group">
+                            <label>First Train Time (HH:mm - military time)</label>
+                            <input id="trainTime" class="form-control" type="text" placeholder="00:00" />
+                        </div>
+                        <div class="form-group">
+                            <label>Frequency(min)</label>
+                            <input id="frequency" class="form-control" type="text" placeholder="15" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-secondary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    <script src="assets/js/app.js"></script>
 </body>
-
 </html>
