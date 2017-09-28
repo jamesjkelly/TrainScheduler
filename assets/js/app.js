@@ -17,13 +17,16 @@ $(document).ready(function() {
       freq: $freq.val()
     })
   });
-
-  database.ref().on("child_added", function(snapshot) {
+database.ref().on("child_added", function(snapshot) {
     var current = snapshot.val();
     var now = moment();
     var tStart = moment(current.time, "HH:mm");
-     
-     
+    // NA = ((CT-ST)/FR + 1) * FR + ST
+    // MA = NA - CT
+    var nextTrain = moment(tStart.add((Math.ceil((now.diff(tStart, "minutes")/current.freq)) * current.freq), "minutes"));
+
+    var minAway = nextTrain.diff(now, "minutes");
+
     var timediff = moment().diff(moment(current.time, "HH:mm"), "minutes");
     $table.append(`<tr><td>${
       current.name
@@ -31,6 +34,10 @@ $(document).ready(function() {
       current.dest
     }</td><td>${
       current.freq
-    }</td><td>Next Train</td><td> Minutes Away</td></tr>`);
+    }</td><td>${
+      nextTrain.format("HH:mm")
+    }</td><td>${
+      minAway
+    }</td></tr>`);
   });
 });
