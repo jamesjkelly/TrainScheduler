@@ -16,9 +16,7 @@ $(document).ready(function() {
       time: $time.val(),
       freq: $freq.val()
     })
-      $name.val('');
-      $dest.val('');
-      $time.val('';
+   
   });
 
 database.ref().on("child_added", function(snapshot) {
